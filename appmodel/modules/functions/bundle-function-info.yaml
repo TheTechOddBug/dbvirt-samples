@@ -1,4 +1,4 @@
-functions:
+DDLFunctions:
 
   - name: "get_k8s_component_info"  # << This is the named used in a template, not the one specified in the JS
     # If you use positional params instead of named, order matters!

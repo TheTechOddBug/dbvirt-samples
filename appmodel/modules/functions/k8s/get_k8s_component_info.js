@@ -1,4 +1,4 @@
-function(args) {
+function get_k8s_component_info(args) {
     print("Arguments " + args.componentId + ", " + args.vdb);
     var result = DBEngine.executeQuery(args.vdb, "SELECT name FROM app_db.COMPONENT WHERE id = '"+args.componentId+"'");
     if (result.count === 0)

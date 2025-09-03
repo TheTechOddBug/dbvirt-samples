@@ -16,7 +16,7 @@ docker run --rm \
     -p 35432:35432 -p 35482:35482 -p 8282:8282 \
     -e DESCRIPTOR_BUNDLE=/dbvirt-samples/empty/empty-descriptor-bundle.zip \
     -e APP_CONFIG=/dbvirt-samples/empty/app-config.yaml \ 
-    kubling/kubling-ce:latest
+    kubling/kubling:latest
 ```
 
 Then open your browser and go to `http://localhost:8282/console`

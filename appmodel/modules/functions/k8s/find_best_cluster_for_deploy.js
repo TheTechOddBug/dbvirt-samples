@@ -1,7 +1,7 @@
 // This function returns the SCHEMA name of the "best" Kubernetes cluster where to schedule the workload.
 // The approach is really simple and only valid to showcase a more complex flow like this, in which multiple sources of the same
 // kind are involved in operations (actions or even queries)
-function(args) {
+function find_best_cluster_for_deploy(args) {
 
     // If there was a previous deployment of this particular component, we keep using the same cluster
     var result = DBEngine.executeQuery(

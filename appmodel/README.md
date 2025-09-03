@@ -79,11 +79,11 @@ docker run --rm \
     -e DESCRIPTOR_BUNDLE=[/path/to/appmodel-descriptor-bundle.zip] \
     -e APP_CONFIG=[/path/to/app-config.yaml] \
     -e MODULE_BUNDLE=[/path/to/appmodel-module-bundle.zip] \
-    -e FUNCTIONS_BUNDLE=[/path/to/appmodel-functions-bundle.zip] \
+    -e TEMPLATE_FUNCTIONS_BUNDLE=[/path/to/appmodel-functions-bundle.zip] \
     -e PROPS_FILE=[/path/to/app.properties] \
     -p 35432:35432 -p 35482:35482 -p 8282:8282 \
     -v [/path/to/dbvirt-samples]:[mount/path] \
-    kubling/kubling-ce:latest
+    kubling/kubling:latest
 ```
 
 Or, assuming that you cloned the repo in `~/dbvirt-samples`, just run:
@@ -92,11 +92,11 @@ docker run --rm \
     -e DESCRIPTOR_BUNDLE=/dbvirt-samples/appmodel/appmodel-descriptor-bundle.zip \
     -e APP_CONFIG=/dbvirt-samples/appmodel/app-config.yaml \
     -e MODULE_BUNDLE=/dbvirt-samples/appmodel/modules/appmodel-module-bundle.zip \
-    -e FUNCTIONS_BUNDLE=/dbvirt-samples/appmodel/modules/appmodel-functions-bundle.zip \
+    -e TEMPLATE_FUNCTIONS_BUNDLE=/dbvirt-samples/appmodel/modules/appmodel-functions-bundle.zip \
     -e PROPS_FILE=/dbvirt-samples/appmodel/app.properties \
     -p 35432:35432 -p 35482:35482 -p 8282:8282 \
     -v ~/dbvirt-samples:/dbvirt-samples \
-    kubling/kubling-ce:latest
+    kubling/kubling:latest
 ```
 
 #### 4. Endpoints

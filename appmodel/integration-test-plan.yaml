@@ -6,6 +6,12 @@ descriptorModule:
 mainModule:
   directory: "./modules/appmodel"
 
+otherModules:
+  - directory: "./modules/functions"
+    name: appmodel-functions-bundle
+    build: true
+    parse: true
+
 # List here all needed properties, including environment variables and properties specified via file.
 properties:
   gitHubURL: "http://localhost:8643"
