@@ -4,9 +4,11 @@
 
 Runnable examples for learning Kubling through working code.
 
-Kubling combines several capabilities that solve different problems: provider integration, endpoints, authentication and authorization, JavaScript extensibility, functions, module lifecycle hooks, and synthetic entities. Putting all of them into one large application makes each mechanism harder to identify and understand, so this repository isolates them into small, independent samples.
+This repository has two purposes: provide a minimal first-run experience with an official gRPC provider, and make features that are difficult to understand in a complete application visible through focused, independent samples.
 
-Start with the Quickstart to see the complete minimal stack, then choose a focused sample for the feature you want to explore. These examples complement the [official Kubling documentation](https://docs.kubling.com), which remains the reference for concepts and configuration.
+The examples cover the boundaries between providers and federation, provider capabilities and data types, endpoints, authentication and authorization, JavaScript extensibility, functions, module lifecycle hooks, bundle automation, synthetic entities, and provider-owned versus federation-owned semantics. Each sample isolates one mechanism and includes a reproducible way to observe its behavior.
+
+Start with the Quickstart, then choose the feature you want to explore. These examples complement the [official Kubling documentation](https://docs.kubling.com), which remains the reference for concepts and configuration.
 
 ## Start with the Quickstart
 
