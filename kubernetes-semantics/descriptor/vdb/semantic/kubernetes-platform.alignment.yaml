@@ -1,0 +1,18 @@
+format: kubling-semantic
+schemaVersion: 1
+kind: alignment
+
+metadata:
+  name: kubernetes-platform-alignment
+  namespace: platform
+  version: 1.0.0
+
+spec:
+  concepts:
+    - id: Workload
+      representations:
+        - kube:Deployment
+      identityBridges: []
+      authority: kube:Deployment
+
+  relationships: []

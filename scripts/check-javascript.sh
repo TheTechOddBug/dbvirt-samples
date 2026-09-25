@@ -5,6 +5,8 @@ set -euo pipefail
 repository_root="$(git rev-parse --show-toplevel)"
 cd "${repository_root}"
 
+printf 'Validating JavaScript static contract (no containers will be started).\n'
+
 compose_file="javascript/compose.yaml"
 vdb_file="javascript/descriptor/vdb/JavaScriptVDB.yaml"
 module_info="javascript/module/bundle-script-info.yaml"

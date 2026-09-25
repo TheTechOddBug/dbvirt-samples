@@ -5,6 +5,8 @@ set -euo pipefail
 repository_root="$(git rev-parse --show-toplevel)"
 cd "${repository_root}"
 
+printf 'Validating Synthetic Entities static contract (no containers will be started).\n'
+
 compose_file="synthetic-entities/compose.yaml"
 vdb_file="synthetic-entities/descriptor/vdb/SyntheticEntitiesVDB.yaml"
 module_info="synthetic-entities/module/bundle-script-info.yaml"

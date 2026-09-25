@@ -1,0 +1,55 @@
+name: Provider Aggregates
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/provider-aggregates.yml"
+      - "provider-aggregates/**"
+      - "scripts/check-provider-aggregates.sh"
+  push:
+    paths:
+      - ".github/workflows/provider-aggregates.yml"
+      - "provider-aggregates/**"
+      - "scripts/check-provider-aggregates.sh"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: provider-aggregates-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  provider-aggregates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Validate static contract
+        run: bash scripts/check-provider-aggregates.sh
+
+      - name: Start Provider Aggregates sample
+        working-directory: provider-aggregates
+        run: docker compose up --wait --wait-timeout 180
+
+      - name: Verify aggregate results
+        working-directory: provider-aggregates
+        run: docker compose --profile test run --rm --no-deps smoke-test
+
+      - name: Verify provider-side pushdown evidence
+        working-directory: provider-aggregates
+        run: bash scripts/assert-pushdown.sh
+
+      - name: Show logs after failure
+        if: failure()
+        working-directory: provider-aggregates
+        run: docker compose logs --no-color
+
+      - name: Remove Provider Aggregates sample
+        if: always()
+        working-directory: provider-aggregates
+        run: docker compose down --volumes --remove-orphans

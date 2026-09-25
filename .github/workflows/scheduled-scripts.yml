@@ -1,0 +1,51 @@
+name: Scheduled Scripts
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/scheduled-scripts.yml"
+      - "scheduled-scripts/**"
+      - "scripts/check-scheduled-scripts.sh"
+  push:
+    paths:
+      - ".github/workflows/scheduled-scripts.yml"
+      - "scheduled-scripts/**"
+      - "scripts/check-scheduled-scripts.sh"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scheduled-scripts-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  scheduled-scripts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Validate static contract
+        run: bash scripts/check-scheduled-scripts.sh
+
+      - name: Start Scheduled Scripts sample
+        working-directory: scheduled-scripts
+        run: docker compose up --wait --wait-timeout 180
+
+      - name: Verify privileged scheduled update
+        working-directory: scheduled-scripts
+        run: docker compose --profile test run --rm --no-deps smoke-test
+
+      - name: Show logs after failure
+        if: failure()
+        working-directory: scheduled-scripts
+        run: docker compose logs --no-color
+
+      - name: Remove Scheduled Scripts sample
+        if: always()
+        working-directory: scheduled-scripts
+        run: docker compose down --volumes --remove-orphans

@@ -1,0 +1,6 @@
+virtualDatabases:
+  - "vdb/ScheduledScriptsVDB.yaml"
+
+scheduledScripts:
+  - scriptFilePath: "scheduled/complete_maintenance.js"
+    cron: "0/2 * * * * *"

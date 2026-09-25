@@ -68,13 +68,27 @@ Never commit credentials, access tokens, private endpoints, or populated `.env` 
 
 ## Validation
 
-Run the repository checks before submitting a change:
+Run the static repository and sample contracts before submitting a change:
 
 ```bash
 bash scripts/check-repository.sh
+bash scripts/check-<sample>.sh
 ```
 
-Also run the sample-specific validation documented in its README. A syntax or configuration check is not a substitute for an end-to-end test; state precisely what was verified.
+These commands do not start containers. They validate files, syntax, image
+allowlists, and configuration invariants only.
+
+Run the real end-to-end lifecycle for every affected sample:
+
+```bash
+bash scripts/test-samples.sh <sample>
+```
+
+Before qualifying a new public Kubling release, run the complete suite:
+
+```bash
+bash scripts/test-samples.sh
+```
 
 ## Change size
 

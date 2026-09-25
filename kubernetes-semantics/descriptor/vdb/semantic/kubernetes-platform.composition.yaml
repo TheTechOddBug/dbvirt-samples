@@ -1,0 +1,23 @@
+format: kubling-semantic
+schemaVersion: 1
+kind: composition
+
+metadata:
+  name: kubernetes-platform
+  namespace: platform
+  version: 1.0.0
+
+spec:
+  target:
+    vdb: KubernetesSemanticVDB
+    version: "1"
+
+  imports: []
+
+  overlays:
+    - kubernetes-platform.alignment.yaml
+
+  exports:
+    - id: kubernetes-platform
+      include:
+        - platform:Workload

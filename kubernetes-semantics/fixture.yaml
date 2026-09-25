@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kubling-sample
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: provider-sample
+  namespace: kubling-sample
+  labels:
+    app.kubernetes.io/name: provider-sample
+    app.kubernetes.io/part-of: kubling-samples
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: provider-sample
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: provider-sample
+    spec:
+      containers:
+        - name: sample
+          image: docker.io/library/nginx:latest
