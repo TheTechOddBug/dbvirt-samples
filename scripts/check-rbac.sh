@@ -5,6 +5,8 @@ set -euo pipefail
 repository_root="$(git rev-parse --show-toplevel)"
 cd "${repository_root}"
 
+printf 'Validating RBAC static contract (no containers will be started).\n'
+
 compose_file="rbac/compose.yaml"
 vdb_file="rbac/descriptor/vdb/RbacVDB.yaml"
 bundle_file="rbac/descriptor/bundle-info.yaml"

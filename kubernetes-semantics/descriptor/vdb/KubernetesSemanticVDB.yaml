@@ -1,0 +1,27 @@
+---
+name: "KubernetesSemanticVDB"
+version: "1"
+
+semanticModel:
+  composition: "semantic/kubernetes-platform.composition.yaml"
+  activationFailurePolicy: failStartup
+
+dataSources:
+  - name: "kube"
+    description: "Kubernetes resources and provider-owned workload semantics from the local k3s cluster."
+    dataSourceType: "PROVIDER_GRPC"
+    configObject:
+      address: "{{ PROVIDER_HOST }}"
+      port: {{ PROVIDER_PORT }}
+      securityConfig:
+        mode: "PLAINTEXT"
+      cache:
+        enabled: false
+      softTransactions:
+        enabled: false
+      contributesToHealth: true
+    schema:
+      type: "PHYSICAL"
+      cacheDefaultStrategy: "NO_CACHE"
+
+rbacDataRoles: []

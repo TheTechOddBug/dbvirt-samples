@@ -1,0 +1,6 @@
+name: "scheduled-scripts-state"
+version: "1.0.0"
+description: "Deterministic state used to observe a bundle-level scheduled update."
+innerDDLFilePath: "schema.sql"
+innerTranslatorConfigFilePath: "translator-config.yaml"
+handlersAutoDiscoveryPath: "handler"

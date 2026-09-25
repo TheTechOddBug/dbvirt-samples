@@ -1,0 +1,21 @@
+---
+name: "ScheduledScriptsVDB"
+version: "1"
+
+dataSources:
+  - name: "scheduler"
+    description: "Observable state updated by a trusted bundle-level scheduled script."
+    dataSourceType: "SCRIPT_DOCUMENT_JS"
+    configObject:
+      module:
+        zipFilePath: "{{ SCHEDULED_MODULE_BUNDLE }}"
+      cache:
+        enabled: false
+      contributesToHealth: true
+    schema:
+      type: "PHYSICAL"
+      ddlFilePaths:
+        - "module:/schema.sql"
+      cacheDefaultStrategy: "NO_CACHE"
+
+rbacDataRoles: []

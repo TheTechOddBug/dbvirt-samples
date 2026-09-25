@@ -2,6 +2,8 @@
 
 This sample demonstrates two independent module lifecycle mechanisms: initialization and scheduled execution.
 
+Both scripts in this example belong to the loaded JavaScript module. For a schedule declared by the main descriptor bundle that executes SQL through `DBEngine`, see the [bundle-level scheduled scripts sample](../scheduled-scripts/README.md).
+
 A descriptor bundle or loaded module can declare an initialization script. Kubling invokes it during bootstrap and injects `initResult`, which allows the script to report successful completion with `initResult.initialized()` or failure with `initResult.error(...)`. A reported failure prevents bootstrap from completing normally.
 
 This sample declares an initialization script and a scheduled script in a JavaScript module. The JavaScript data source is not responsible for initialization; it only makes the resulting state observable through `SCHEDULER_STATE`:

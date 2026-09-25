@@ -5,6 +5,8 @@ set -euo pipefail
 repository_root="$(git rev-parse --show-toplevel)"
 cd "${repository_root}"
 
+printf 'Validating Initializer static contract (no containers will be started).\n'
+
 compose_file="initializer/compose.yaml"
 vdb_file="initializer/descriptor/vdb/InitializerVDB.yaml"
 module_info="initializer/module/bundle-script-info.yaml"

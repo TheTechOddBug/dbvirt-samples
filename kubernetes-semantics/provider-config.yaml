@@ -1,0 +1,11 @@
+kubeconfig: /kubeconfig/kubeconfig.yaml
+namespace: k3s-sample
+blankNamespaceStrategy: ALL
+
+schema:
+  fieldExpansionDepth: 4
+  includeObject: false
+  include:
+    - "v1/pods"
+    - "apps/v1/deployments"
+    - "apps/v1/replicasets"

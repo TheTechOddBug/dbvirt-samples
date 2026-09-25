@@ -5,6 +5,8 @@ set -euo pipefail
 repository_root="$(git rev-parse --show-toplevel)"
 cd "${repository_root}"
 
+printf 'Validating Functions static contract (no containers will be started).\n'
+
 compose_file="functions/compose.yaml"
 descriptor_info="functions/descriptor/bundle-info.yaml"
 vdb_file="functions/descriptor/vdb/FunctionsVDB.yaml"

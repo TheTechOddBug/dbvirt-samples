@@ -1,0 +1,51 @@
+name: Kubernetes Semantics
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/kubernetes-semantics.yml"
+      - "kubernetes-semantics/**"
+      - "scripts/check-kubernetes-semantics.sh"
+  push:
+    paths:
+      - ".github/workflows/kubernetes-semantics.yml"
+      - "kubernetes-semantics/**"
+      - "scripts/check-kubernetes-semantics.sh"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kubernetes-semantics-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  kubernetes-semantics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Validate static contract
+        run: bash scripts/check-kubernetes-semantics.sh
+
+      - name: Start Kubernetes semantics sample
+        working-directory: kubernetes-semantics
+        run: docker compose up --wait --wait-timeout 300
+
+      - name: Verify provider and federation semantics
+        working-directory: kubernetes-semantics
+        run: docker compose --profile test run --rm --no-deps smoke-test
+
+      - name: Show logs after failure
+        if: failure()
+        working-directory: kubernetes-semantics
+        run: docker compose logs --no-color
+
+      - name: Remove Kubernetes semantics sample
+        if: always()
+        working-directory: kubernetes-semantics
+        run: docker compose down --volumes --remove-orphans
